@@ -1,3 +1,5 @@
+Перед использованием прочитайте файл instruction, пожалуйста.
+
 Программа работает с матрицей смежности ацикличного графа.Также в программе есть проверка на ацикличность графа.
 В процессе выводится матрица смежности с добавочным столбцом, в котором отображается высота вершины.
 На последней итерации выводится матрица со всеми высотами.
@@ -12,28 +14,28 @@
 
 Экземпляр хранит в себе матрицу смежности с добавленным столбцом, а также множество отмеченных строк.
 
-class Graph:
-    def __init__(self, matrix: list) -> None:
-        self.matrix: list = matrix
-        for i in range(len(self)):
-            self.matrix[i].insert(0, None)
-        self.marked_lines = set()
+    class Graph:
+        def __init__(self, matrix: list) -> None:
+            self.matrix: list = matrix
+            for i in range(len(self)):
+                self.matrix[i].insert(0, None)
+            self.marked_lines = set()
 
 
 Метод __check_column проверяет, что столбец не нулевой.
 
-def __check_column(self, column_number: int) -> bool:
-        # column_number НЕ должен быть меньше 1
-        # если столбец не нулевой вернет True
-        if column_number < 1:
-            raise IndexError('column_number НЕ должен быть меньше 1')
-        column = [int(self.matrix[line][column_number]) for line in range(len(self.matrix))]  # список столбца
-        return any(column)
+    def __check_column(self, column_number: int) -> bool:
+            # column_number НЕ должен быть меньше 1
+            # если столбец не нулевой вернет True
+            if column_number < 1:
+                raise IndexError('column_number НЕ должен быть меньше 1')
+            column = [int(self.matrix[line][column_number]) for line in range(len(self.matrix))]  # список столбца
+            return any(column)
 
 Метод __len__ переопределяет функцию len для экземпляров класса.
 
-   def __len__(self) -> int:
-       return len(self.matrix)
+     def __len__(self) -> int:
+         return len(self.matrix)
 
 Метод __check_add_column проверяет что в добавленном столбце еще есть незаполненные вершины.
 
@@ -74,6 +76,7 @@ def __check_column(self, column_number: int) -> bool:
 
 
 Метод считает все высоты для всех вершин (пока есть незаполненные вершины в добавочной матрице) и выводит матрицу на каждой итерации.
+
     def calc_all_heights(self) -> None:
         self.__stage0()
         k = 1
@@ -123,24 +126,24 @@ def __check_column(self, column_number: int) -> bool:
 
 Функция читает матрицу из файла
 
-def read_file():
-    with open('matrix.txt') as file:
-        str_matrix = file.readlines()
-        matrix = []
-        for s in str_matrix:
-            matrix.append(list(map(int, s.split())))
-        try:
-            assert len(matrix) != 0
-        except AssertionError:
-            print("Матрица Пустая")
-            input()
-            exit(-1)
-        try:
-            assert len(matrix) == len(matrix[0])
-        except AssertionError:
-            print("Матрица не квадратная или лишние отступы в файле")
-            input()
-            exit(-1)
-    return matrix
+    def read_file():
+        with open('matrix.txt') as file:
+            str_matrix = file.readlines()
+            matrix = []
+            for s in str_matrix:
+                matrix.append(list(map(int, s.split())))
+            try:
+                assert len(matrix) != 0
+            except AssertionError:
+                print("Матрица Пустая")
+                input()
+                exit(-1)
+            try:
+                assert len(matrix) == len(matrix[0])
+            except AssertionError:
+                print("Матрица не квадратная или лишние отступы в файле")
+                input()
+                exit(-1)
+        return matrix
 
 

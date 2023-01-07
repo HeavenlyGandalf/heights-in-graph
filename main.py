@@ -55,7 +55,13 @@ class Graph:
 
     def print_matrix(self) -> None:
         print()
-        print(*[line for line in self.matrix], sep='\n')
+        for i in range(len(self)):
+            for j in range(len(self)):
+                if self.matrix[i][j] == None:
+                    print('-',end =' ')
+                else:
+                    print(self.matrix[i][j],end =' ')
+            print()
 
     def __dfs(self, colors: list, start: int = 0, answer: bool = False) -> bool:
         # проверка на циклы от заданной вершины(по умолчанию 0) путем поиска в глубину
